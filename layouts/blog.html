@@ -1,5 +1,4 @@
 <?php $this->yellow->layout("header") ?>
-haha eeee
 <div class="content">
 <div class="main" role="main">
   <div class="gutter-sizer"></div>
@@ -15,7 +14,12 @@ haha eeee
   echo $this->yellow->extension->get("jollyfunctions")->featuredImage($this, $this->yellow->page); } ?>
 </div>
 
-<div class="entry-meta"><p><?php echo $this->yellow->page->getDateHtml("published") ?> <?php echo $this->yellow->language->getTextHtml("blogBy") ?> <?php $authorCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("author")) as $author) { if (++$authorCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("author:$author")."\">".htmlspecialchars($author)."</a>"; } ?></p></div>
+<div class="entry-meta">
+  <p>
+    <?php echo $this->yellow->page->getDateHtml("published") ?>
+  </p>
+</div>
+
 <div class="entry-content"><?php echo $this->yellow->page->getContent() ?></div>
 <?php echo $this->yellow->page->getExtra("profiles") ?>
 <?php echo $this->yellow->page->getExtra("links") ?>
@@ -24,6 +28,9 @@ haha eeee
 <p><?php echo $this->yellow->language->getTextHtml("blogTag") ?> <?php $tagCounter = 0; foreach (preg_split("/\s*,\s*/", $this->yellow->page->get("tag")) as $tag) { if (++$tagCounter>1) echo ", "; echo "<a href=\"".$this->yellow->page->getPage("blogStart")->getLocation(true).$this->yellow->lookup->normaliseArguments("tag:$tag")."\">".htmlspecialchars($tag)."</a>"; } ?></p>
 </div>
 <?php endif ?>
+
+<?php echo $this->yellow->page->getExtra("previousnext") ?>
+
 <?php echo $this->yellow->page->getExtra("comments") ?>
 </div>
 </div>

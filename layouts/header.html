@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?php echo $this->yellow->page->getHtml("language") ?>">
+<html lang="<?php echo $this->yellow->page->getHtml("language") ?>"  class="<?php echo "layout-".$this->yellow->page->getHtml("layout") ?>">
 <head>
 <title><?php echo $this->yellow->page->getHtml("titleHeader") ?></title>
 <meta charset="utf-8" />
@@ -10,7 +10,7 @@
 <?php echo $this->yellow->page->getExtra("header") ?>
 </head>
 <body>
-<div class="<?php echo "page layout-".$this->yellow->page->getHtml("layout") ?>">
+<div class="page">
 <div class="header" role="banner">
 <div class="sitename">
 <h1><a href="<?php echo $this->yellow->page->getBase(true)."/" ?>"><i class="sitename-logo"></i><?php echo $this->yellow->page->getHtml("sitename") ?></a></h1>
