@@ -1,0 +1,31 @@
+2023-04-11 21:01:30 info Install Datenstrom Yellow 0.8.22, PHP 7.3.5, Apache 2.4.43, Mac
+2023-04-11 21:01:30 info Install extension 'Update 0.8.92'
+2023-04-11 21:01:30 info Install extension 'Command 0.8.45'
+2023-04-11 21:01:30 info Install extension 'Core 0.8.105'
+2023-04-11 21:01:30 info Install extension 'Edit 0.8.71'
+2023-04-11 21:01:30 info Install extension 'Image 0.8.18'
+2023-04-11 21:01:30 info Install extension 'Markdown 0.8.24'
+2023-04-11 21:01:30 info Install extension 'Meta 0.8.16'
+2023-04-11 21:01:30 info Install extension 'Serve 0.8.22'
+2023-04-11 21:01:30 info Install extension 'Stockholm 0.8.14'
+2023-04-11 21:01:30 info Install extension 'English 0.8.42'
+2023-04-11 21:01:30 info Install extension 'German 0.8.42'
+2023-04-11 21:01:30 info Install extension 'Swedish 0.8.42'
+2023-04-11 21:01:42 info Install extension 'Blog 0.8.25'
+2023-04-11 21:01:42 info Add user 'chris'
+2023-04-11 17:05:54 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-11 17:08:33 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-11 17:14:56 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-11 17:32:57 error Can't parse file 'system/extensions/jollyfunctions.php'!
+2023-04-11 17:33:19 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-11 17:33:50 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-11 17:33:59 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-11 17:36:01 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-11 17:36:37 error Can't parse file 'system/extensions/jollyfunctions.php'!
+2023-04-11 17:40:17 error Can't parse file 'system/extensions/jollyfunctions.php'!
+2023-04-11 17:41:06 error Can't parse file 'system/extensions/jollyfunctions.php'!
+2023-04-12 22:14:17 error Can't parse file 'system/extensions/jollyfunctions.php'!
+2023-04-12 22:14:25 error Can't parse file 'system/extensions/jollyfunctions.php'!
+2023-04-12 22:14:58 error Can't parse file 'system/extensions/jollyfunctions.php'!
+2023-04-16 17:54:23 error Can't parse file 'system/extensions/core.php'!
+2023-04-21 21:57:37 error Can't parse file 'system/extensions/jollyfunctions.php'!

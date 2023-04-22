@@ -1,0 +1,61 @@
+<?php $this->yellow->layout("header") ?>
+<div class="content">
+<div class="main masonry-grid" role="main">
+
+  <div class="grid-sizer"></div>
+  <div class="gutter-sizer"></div>
+  <div class="grid-item"></div>
+
+<?php if ($this->yellow->page->get("blogWithFilter")): ?>
+<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<?php endif ?>
+
+<?php foreach ($this->yellow->page->getPages("blog")->paginate($this->yellow->system->get("blogPaginationLimit")) as $page): ?>
+  <?php $page->set("entryClass", "entry") ?>
+  <?php if ($page->isExisting("tag")): ?>
+    <?php foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) { $page->set("entryClass", $page->get("entryClass")." tag-".$this->yellow->lookup->normaliseArguments($tag, false)); } ?>
+  <?php endif ?>
+
+<?php $pathInstall = $this->yellow->system->get("coreServerInstallDirectory") ?>
+
+
+
+<div class="blog-entry grid-item <?php echo $page->getHtml("entryClass") ?>">
+
+  <div class="featured-image">
+    <?php if ($this->yellow->extension->isExisting("jollyfunctions")) {
+    echo $this->yellow->extension->get("jollyfunctions")->featuredImage($this, $page); } ?>
+  </div>
+
+  <div class="entry-title">
+    <h1>
+      <a href="<?php echo $page->getLocation(true) ?>">
+        <?php echo $page->getHtml("title") ?>
+      </a>
+    </h1>
+  </div>
+
+  <div class="tags">
+    <?php if ($page->isExisting("tag")): ?>
+    <?php foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
+      echo '<li>'.$tag.'</li>';
+    } ?>
+    <?php endif ?>
+  </div>
+
+
+  <div class="entry-meta">
+    <p><?php echo $page->getDateHtml("published") ?></p>
+  </div>
+  <div class="entry-content">
+    <?php /* echo $this->yellow->toolbox->createTextDescription($page->getContent(), 0, false, "<!--more-->", "<a href=\"".$page->getLocation(true)."\">".$this->yellow->language->getTextHtml("blogMore")."</a>") */ ?>
+  </div>
+</div>
+<?php endforeach ?>
+
+</div>
+
+<?php $this->yellow->layout("pagination", $this->yellow->page->getPages("blog")) ?>
+
+</div>
+<?php $this->yellow->layout("footer") ?>

@@ -1,0 +1,203 @@
+/* Stockholm extension, https://github.com/annaesvensson/yellow-stockholm */
+/* Colors and fonts */
+:root {
+  --bg: #1f2122;
+  --page-bg: #1f2122;
+  --code-bg: #f7f7f7;
+  --notice1-bg: #fffbf0;
+  --notice2-bg: #fdf0f0;
+  --notice3-bg: #f0f8fe;
+  --heading: #111;
+  --text: #666;
+  --code: #666;
+  --link: #07d;
+  --link-active: #29f;
+  --blockquote-accent: #29f;
+  --notice1-accent: #fb0;
+  --notice2-accent: #d00;
+  --notice3-accent: #08e;
+  --separator: #ddd;
+  --border: #bbb;
+  --font: "Open Sans", Helvetica, sans-serif;
+  --monospace-font: Consolas, Menlo, Courier, monospace;
+  --rotation: 2;
+}
+
+html {
+  font-family: system-ui;
+  background: var(--page-bg);
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@media screen and (max-width: 32em) {
+  body {
+    margin: 0.5em;
+    font-size: 0.9em;
+  }
+  .content h1,
+  .content h2 {
+    font-size: 1.5em;
+  }
+}
+@media print {
+  .page {
+    border: none !important;
+  }
+}
+.layout-blog-start .featured-image {
+  line-height: 0;
+}
+.layout-blog-start .blog-entry {
+  margin-bottom: 30px;
+  transform: rotate(var(--rotation));
+}
+.layout-blog-start .featured-image img {
+  width: 100%;
+}
+.layout-blog-start .entry {
+  position: relative;
+}
+.layout-blog-start .entry-title {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.layout-blog-start .entry-title h1 {
+  font-weight: bold;
+  font-size: 1.04rem;
+  font-family: Iosevka-Aile-Light;
+  letter-spacing: -0.04rem;
+}
+.layout-blog-start .entry-title a {
+  color: #000;
+  text-decoration: none;
+}
+.layout-blog-start .entry-title a:before {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+}
+.layout-blog-start .entry-meta {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.2rem 0.4rem;
+  color: #fd0;
+  background: #000;
+  backdrop-filter: blur(10px);
+  font-family: iosevka;
+}
+.layout-blog-start .entry-meta p {
+  margin: 0;
+}
+.layout-blog-start .main.masonry-grid {
+  background: rgba(31, 33, 34, 0.4);
+  margin: 2rem;
+}
+.layout-blog-start .sitename {
+  font-size: 8vw;
+  font-family: Iosevka-Aile-Light;
+  width: 50%;
+  display: block;
+  line-height: 1;
+  text-decoration: none;
+}
+.layout-blog-start .sitename h1 {
+  font-size: 1em;
+  font-weight: 400;
+  position: fixed;
+  left: 0;
+  width: 50%;
+  top: 1rem;
+}
+.layout-blog-start .sitename a {
+  text-decoration: none;
+  color: #FFC848;
+}
+.layout-blog-start .blog-entry {
+  background: #1EC4B4;
+}
+.layout-blog-start .featured-image {
+  mix-blend-mode: multiply;
+}
+.layout-blog-start .featured-image img {
+  filter: grayscale(1);
+}
+
+.masonry-grid {
+  margin-top: 20rem;
+}
+.masonry-grid .blog-entry:nth-child(7n+0) {
+  background: #e7a075;
+}
+.masonry-grid .blog-entry:nth-child(7n+1) {
+  background: #d9c6af;
+}
+.masonry-grid .blog-entry:nth-child(7n+2) {
+  background: #ccd4d9;
+}
+.masonry-grid .blog-entry:nth-child(7n+3) {
+  background: #fab365;
+}
+.masonry-grid .blog-entry:nth-child(7n+4) {
+  background: #d2c651;
+}
+.masonry-grid .blog-entry:nth-child(7n+5) {
+  background: #e1b177;
+}
+.masonry-grid .blog-entry:nth-child(7n+6) {
+  background: #c4c4c4;
+}
+
+.entry-title h1 {
+  display: inline-block;
+  background: #fff;
+  padding: 0.2rem 0.4rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 1px 1px;
+  margin-left: -2px;
+}
+
+.tags {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: none;
+}
+.tags li {
+  background: #fff;
+  list-style: none;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+  font-family: menlo;
+  font-size: 0.9rem;
+}
+
+.grid-sizer,
+.grid-item {
+  width: 22%;
+}
+
+.gutter-sizer {
+  width: 3%;
+}
+
+.blog-entry {
+  transition: 0.4s all ease;
+}
+.blog-entry:hover {
+  background: #fff !important;
+  transform: scale(1.04);
+}
+.blog-entry:hover .featured-image {
+  mix-blend-mode: unset;
+}
+.blog-entry:hover .featured-image img {
+  filter: unset;
+}

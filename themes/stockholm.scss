@@ -1,0 +1,235 @@
+/* Stockholm extension, https://github.com/annaesvensson/yellow-stockholm */
+
+/* Colors and fonts */
+
+:root {
+  --bg: #1f2122;
+  --page-bg: #1f2122;
+  --code-bg: #f7f7f7;
+  --notice1-bg: #fffbf0;
+  --notice2-bg: #fdf0f0;
+  --notice3-bg: #f0f8fe;
+  --heading: #111;
+  --text: #666;
+  --code: #666;
+  --link: #07d;
+  --link-active: #29f;
+  --blockquote-accent: #29f;
+  --notice1-accent: #fb0;
+  --notice2-accent: #d00;
+  --notice3-accent: #08e;
+  --separator: #ddd;
+  --border: #bbb;
+  --font: "Open Sans", Helvetica, sans-serif;
+  --monospace-font: Consolas, Menlo, Courier, monospace;
+  --rotation: 2;
+}
+
+html {
+ font-family: system-ui;
+ background: var(--page-bg);
+ box-sizing: border-box;
+}
+*, *:before, *:after {
+ box-sizing: inherit;
+}
+
+@media screen and (max-width: 32em) {
+  body {
+    margin: 0.5em;
+    font-size: 0.9em;
+  }
+  .content h1,
+  .content h2 {
+    font-size: 1.5em;
+  }
+}
+@media print {
+  .page {
+    border: none !important;
+  }
+}
+
+
+
+
+
+
+
+.layout-blog-start {
+ .featured-image {
+   line-height: 0;
+ }
+
+ .blog-entry {
+  margin-bottom: 30px;
+  transform: rotate(var(--rotation));
+ }
+
+ .featured-image img {
+   width: 100%;
+ }
+ .entry {
+   position: relative;
+ }
+
+ .entry-title {
+   position: absolute;
+   top: 0;
+   width: 100%;
+   height: 100%;
+
+   h1 {
+    font-weight: bold;
+    font-size: 1.04rem;
+    font-family: Iosevka-Aile-Light;
+    letter-spacing: -0.04rem;
+   }
+
+   a {
+    color: #000;
+    text-decoration: none;
+
+    &:before {
+       position: absolute;
+       top: 0;
+       width: 100%;
+       height: 100%;
+       content: '';
+     }
+   }
+ }
+
+ .entry-meta {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   padding: 0.2rem 0.4rem;
+   color: #fd0;
+   background: #000;
+   backdrop-filter: blur(10px);
+   font-family: iosevka;
+
+   p {
+     margin: 0;
+   }
+ }
+
+ .main.masonry-grid {
+   background: rgba(31,33,34,0.4);
+   margin: 2rem;
+ }
+
+ .sitename {
+  font-size: 8vw;
+  font-family: Iosevka-Aile-Light;
+  width: 50%;
+  display: block;
+  line-height: 1;
+  text-decoration: none;
+
+  h1 {
+   font-size: 1em;
+   font-weight: 400;
+   position: fixed;
+   left: 0;
+   width: 50%;
+   top: 1rem;
+  }
+  a {
+   text-decoration: none;
+   color: #FFC848;
+  }
+ }
+
+ .blog-entry {
+  background: #1EC4B4;
+ }
+
+ .featured-image {
+  mix-blend-mode: multiply;
+
+  img {
+   filter: grayscale(1);
+  }
+ }
+}
+
+.masonry-grid {
+  margin-top: 20rem;
+
+ // https://www.presentandcorrect.com/blogs/blog/rams-palette
+
+ $colors:
+  #cc6324,
+  #bfa07a,
+  #aab7bf,
+  #ed8008,
+  #736b1e,
+  #bf7c2a,
+  #9c9c9c;
+
+ $color-number: length($colors);
+
+ @each $color in $colors {
+  $i: index($colors, $color);
+
+  .blog-entry:nth-child(#{$color-number}n + #{$i - 1}) {
+   background: scale-color($color, $lightness: 40%);
+  }
+ }
+}
+
+.entry-title h1 {
+  display: inline-block;
+  background: #fff;
+  padding: 0.2rem 0.4rem;
+  box-shadow: rgba(0,0,0,0.2) 1px 1px 1px;
+  margin-left: -2px;
+}
+
+.main.masonry-grid {
+}
+
+.tags {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: none;
+
+  li {
+   background: #fff;
+   list-style: none;
+   padding: 0.2rem 0.4rem;
+   border-radius: 0.3rem;
+   font-family: menlo;
+   font-size: 0.9rem;
+  }
+}
+
+.grid-sizer,
+.grid-item {
+ width: 22%;
+}
+
+.gutter-sizer {
+ width: 3%;
+}
+
+
+.blog-entry {
+  transition: 0.4s all ease;
+
+  &:hover {
+    background: #fff !important;
+  	transform: scale(1.04);
+
+    .featured-image {
+      mix-blend-mode: unset;
+
+      img {
+        filter: unset;
+      }
+    }
+  }
+}
