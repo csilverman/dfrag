@@ -7,7 +7,7 @@
 
 :root {
   --bg: #1f2122;
-  --page-bg: #888;
+  --page-bg: #fff;
   --code-bg: #f7f7f7;
   --notice1-bg: #fffbf0;
   --notice2-bg: #fdf0f0;
@@ -61,12 +61,17 @@ body {
 
 
 
+.main.masonry-grid {
+  margin: 2rem;
+  margin-top: var(--spaceAtTop);
+}
 
 
 
 .layout-blog-start {
   --footer-bg-color: #000;
   --footer-bg-text: var(--gray-light-3);
+  --spaceAtTop: 34vw;
 
  .featured-image {
    line-height: 0;
@@ -125,33 +130,6 @@ body {
    }
  }
 
- .main.masonry-grid {
-//   background: rgba(31,33,34,0.4);
-   margin: 2rem;
-   margin-top: 24rem;
- }
-
- .sitename {
-  font-size: 8vw;
-  width: 50%;
-  display: block;
-  line-height: 1;
-  text-decoration: none;
-
-  h1 {
-   font-size: 1em;
-   font-weight: 300;
-   position: fixed;
-   left: 0;
-   width: 50%;
-   top: 1rem;
-  }
-  a {
-   text-decoration: none;
-   color: var(--yellow);
-  }
- }
-
  .blog-entry {
   background: #1EC4B4;
  }
@@ -179,15 +157,28 @@ body {
   #9c9c9c;
 
   $colors:
-    #f00,
-    #ff0,
-    #0f0,
-    #0ff,
-    #00f,
-    #f0f
+    #c3e697,
+    #c0966e,
+    #ddb55d,
+    #ecc5f9,
+    #fbe2b7,
+    #e0e0fc
   ;
 
-  $colors: #ff0, #fff, #888;
+  $colors:
+//    #f00,
+    #ff0,
+    #00ff71,
+    #66dcdc,
+    #e388bd
+//    #00f,
+//    #f0f
+  ;
+
+
+//  $colors: #ff0, #fff, #888;
+
+// Commented-out colors are too dark
 
  $color-number: length($colors);
 
@@ -199,7 +190,7 @@ body {
   }
  }
 
-  .entry-title h1 {
+  .entry-title-heading {
     display: inline-block;
     background: #fff;
     padding: 0.2rem 0.4rem;
@@ -225,11 +216,21 @@ body {
 
   .grid-sizer,
   .grid-item {
-   width: 22%;
+    @media screen and (min-width: 50em) {
+      width: 30%;
+    }
+    @media screen and (min-width: 60em) {
+      width: 22%;
+    }
   }
 
   .gutter-sizer {
-   width: 3%;
+    @media screen and (min-width: 50em) {
+      width: 3%;
+    }
+    @media screen and (min-width: 60em) {
+      width: 3%;
+    }
   }
 }
 
@@ -280,7 +281,7 @@ body {
     background: transparent;
 
     h1 {
-    background: var(--gray-light-3, #eee);
+      background: var(--gray-light-3, #eee);
       width: fit-content;
     }
   }
@@ -329,7 +330,7 @@ a {
 }
 
 
-html:not(.layout-blog-start) {
+.isntHomePage {
   --page-bg: #fff;
   --footer-bg-color: var(--yellow);
   --footer-bg-text: var(--black, #000);
@@ -353,10 +354,22 @@ html:not(.layout-blog-start) {
 }
 
 .layout-default {
+  .navigation {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+  }
   .content {
-    max-width: 40rem;
+    max-width: 44rem;
+    margin: 0 auto;
     font-family: var(--serif-font);
     font-size: var(--font-size-prose);
+
+    h1 {
+      font-family: var(--monospace-font);
+      font-weight: 300;
+      font-size: 3rem;
+    }
   }
 }
 
@@ -370,4 +383,112 @@ html:not(.layout-blog-start) {
 .navigation li:before {
     content: "—";
     margin-right: 0.3rem
+}
+
+.intro {
+    position: fixed;
+    right: 4rem;
+    top: 12rem;
+    background: var(--yellow);
+    width: 20rem;
+}
+
+.isHomePage {
+  .sitename {
+   font-size: 8vw;
+   width: 50%;
+   display: block;
+   line-height: 1;
+   text-decoration: none;
+
+   h1 {
+    font-size: 1em;
+    font-weight: 300;
+    position: fixed;
+    left: 0;
+    width: 50%;
+    top: 1rem;
+   }
+   a {
+    text-decoration: none;
+  }
+  .sitename-text span {
+    // color: var(--yellow);
+    color: #fff;
+    background-color: #00f;
+
+    span:first-child {
+      position: relative;
+    }
+    span:last-child {
+      margin-left: 2rem;
+    }
+   }
+  }
+}
+
+.navigation {
+  $nav-border: 1px dashed #00beff;
+  border: $nav-border;
+  border-left: none;
+  padding: 1rem;
+  width: fit-content;
+
+  ul {
+    margin: 0;
+  }
+
+  .pageType-directory & {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    text-align: right;
+    border-left: $nav-border;
+  }
+}
+
+.sitename-logo {
+  .isHomePage & {
+    display: none;
+  }
+  .isntHomePage & {
+    width: 10rem;
+    margin-left: 2rem;
+  }
+}
+
+.layout-default,
+.pageType-file {
+  .sitename-text {
+    position: absolute;
+    overflow: hidden;
+    opacity: 0;
+  }
+}
+
+// tag page
+.pageType-directory.isntHomePage {
+  --spaceAtTop: 14rem;
+
+  .intro {
+    display: none;
+  }
+  .pageTitle {
+    font-size: 4vw;
+    font-weight: 300;
+    margin-left: 3rem;
+
+    span {
+      display: block;
+      font-weight: 400;
+      font-family: var(--serif-font);
+      font-size: 1.2rem;
+      font-style: italic;
+      text-transform: uppercase;
+      border-bottom: 1px solid;
+      letter-spacing: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-color: #e388bd;
+    }
+  }
 }

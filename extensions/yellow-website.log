@@ -30,3 +30,6 @@
 2023-04-16 17:54:23 error Can't parse file 'system/extensions/core.php'!
 2023-04-21 21:57:37 error Can't parse file 'system/extensions/jollyfunctions.php'!
 2023-04-22 00:21:59 info Install extension 'Previousnext 0.8.18'
+2023-04-22 12:45:31 error Can't parse file 'system/extensions/flickity.php'!
+2023-04-23 20:38:08 error Can't parse file 'system/layouts/blog-start.html'!
+2023-04-23 20:45:18 error Can't parse file 'system/layouts/blog-start.html'!

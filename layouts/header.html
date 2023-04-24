@@ -1,5 +1,35 @@
 <!DOCTYPE html>
-<html lang="<?php echo $this->yellow->page->getHtml("language") ?>"  class="<?php echo "layout-".$this->yellow->page->getHtml("layout") ?>">
+
+<?php
+$fileLocation = $this->yellow->lookup->isFileLocation($this->yellow->page->location);
+$pageType = htmlspecialchars($fileLocation? "file" : "directory");
+$pageLayout = $this->yellow->page->getHtml("layout");
+
+$thisPageTitle = $this->yellow->page->getHtml("titleContent");
+$theTopPage = $this->yellow->page->getParentTop();
+
+//  is we on the home page ??
+if( $thisPageTitle == "Blog") // $theTopPage->getHtml("titleContent"))
+  $onHomePage = true;
+else $onHomePage = false;
+
+$pageClasses = [
+  "layout-".$pageLayout,
+  "pageType-".$pageType,
+  ($onHomePage) ? ("isHomePage") : ("isntHomePage")
+];
+
+function listPageClasses($classes) {
+  foreach ($classes as &$class) {
+    echo ' '.$class;
+  }
+}
+
+?>
+
+
+
+<html lang="<?php echo $this->yellow->page->getHtml("language") ?>"  class="<?php echo listPageClasses($pageClasses); ?>">
 <head>
 <title><?php echo $this->yellow->page->getHtml("titleHeader") ?></title>
 <meta charset="utf-8" />
@@ -10,10 +40,29 @@
 <?php echo $this->yellow->page->getExtra("header") ?>
 </head>
 <body>
+
 <div class="page">
 <div class="header" role="banner">
 <div class="sitename">
-<h1><a href="<?php echo $this->yellow->page->getBase(true)."/" ?>"><i class="sitename-logo"></i><?php echo $this->yellow->page->getHtml("sitename") ?></a></h1>
+  <h1>
+    <a href="<?php echo $this->yellow->page->getBase(true)."/" ?>">
+      <?php // echo $this->yellow->page->getHtml("sitename") ?>
+
+      <div class="sitename-logo">
+        <svg viewBox="0 0 217.527 118.693" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+          <defs></defs>
+          <path d="M -100.504 -116.132 L -100.504 -1.085 L -215.551 -1.085 L -100.504 -116.132 Z" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)" bx:shape="triangle -215.551 -116.132 115.047 115.047 1 0 1@dd667bbf"></path>
+          <path d="M 158.591 79.373 L 215.42 167.583 L 100.614 167.583 L 158.591 79.373 Z" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" transform="matrix(0, 1, -1, 0, 168.227173, -99.802513)" bx:shape="triangle 100.614 79.373 114.806 88.21 0.505 0 1@fce46616"></path>
+        </svg>
+      </div>
+      <div class="sitename-text">
+        <span>Design</span>
+        <span>Fragments</span>
+      </div>
+    </a>
+  </h1>
+
+
 <?php echo $this->yellow->page->getPage("header")->getContent() ?>
 </div>
 <div class="sitename-banner"></div>

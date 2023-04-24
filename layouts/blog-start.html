@@ -1,4 +1,15 @@
 <?php $this->yellow->layout("header") ?>
+
+<div class="intro">
+<?php echo $this->yellow->page->getHtml("SiteInfo") ?>
+</div>
+
+
+<?php if ($this->yellow->page->get("blogWithFilter")): ?>
+  <h1 class="pageTitle"><?php echo str_replace("Blog: ", "<span>Filed under</span> ", $this->yellow->page->getHtml("title")); ?></h1>
+<?php endif ?>
+
+
 <div class="content">
 <div class="main masonry-grid" role="main">
 
@@ -6,9 +17,12 @@
   <div class="gutter-sizer"></div>
   <div class="grid-item"></div>
 
-<?php if ($this->yellow->page->get("blogWithFilter")): ?>
-<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
-<?php endif ?>
+
+<!--
+<?php /* if ($this->yellow->page->get("blogWithFilter")): ?>
+<h2><?php echo $this->yellow->page->getHtml("titleContent") ?></h2>
+<?php endif */ ?>
+-->
 
 <?php foreach ($this->yellow->page->getPages("blog")->paginate($this->yellow->system->get("blogPaginationLimit")) as $page): ?>
   <?php $page->set("entryClass", "entry") ?>
@@ -28,11 +42,11 @@
   </div>
 
   <div class="entry-title">
-    <h1>
+    <h2 class="entry-title-heading">
       <a href="<?php echo $page->getLocation(true) ?>">
         <?php echo $page->getHtml("title") ?>
       </a>
-    </h1>
+    </h2>
   </div>
 
   <div class="tags">
