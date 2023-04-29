@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 /* Stockholm extension, https://github.com/annaesvensson/yellow-stockholm */
+/*  RENAME THIS THEME */
 /* Colors and fonts */
 :root {
   --bg: #1f2122;
@@ -30,6 +31,18 @@
   --gray-light-3: #eee;
 }
 
+/*  THEME
+    ===== */
+:root {
+  --metadata-font: var(--monospace-font);
+  --metadata-text-color: var(--yellow);
+  --metadata-text-bg-color: #000;
+}
+
+/*  BASICS
+    ======
+    These apply sitewide
+*/
 html {
   font-family: var(--monospace-font);
   background: var(--page-bg);
@@ -44,6 +57,10 @@ body {
   margin: 0;
 }
 
+/*  Template
+    --------
+    These apply to sitewide template-level elements
+*/
 .footer {
   background: var(--footer-bg-color);
   color: var(--footer-bg-text);
@@ -51,25 +68,47 @@ body {
   padding: 4rem;
 }
 
+/*  SPECIFIC PAGES
+    ==============
+    These apply to specific pages and types of
+    pages (home, archive)
+*/
+/*  Blog post listings
+    ------------------
+    This is the design for any listing of
+    posts (home or tag archives)
+*/
 .main.masonry-grid {
   margin: 2rem;
   margin-top: var(--spaceAtTop);
 }
 
+/*  layout-blog-start is the template used by
+    both the homepage and archive pages.
+*/
 .layout-blog-start {
   --footer-bg-color: #000;
   --footer-bg-text: var(--gray-light-3);
   --spaceAtTop: 34vw;
+  /*  blog post module
+      ················
+      This is for individual blog post tiles on
+      the home or archive page.
+  */
+  /* Unlike on WordPress, where blog posts can have a lot
+     of associated metadata, I only have one value here:
+     the date it was posted.
+   */
 }
 .layout-blog-start .featured-image {
   line-height: 0;
 }
+.layout-blog-start .featured-image img {
+  width: 100%;
+}
 .layout-blog-start .blog-entry {
   margin-bottom: 30px;
   transform: rotate(var(--rotation));
-}
-.layout-blog-start .featured-image img {
-  width: 100%;
 }
 .layout-blog-start .entry {
   position: relative;
@@ -80,7 +119,7 @@ body {
   width: 100%;
   height: 100%;
 }
-.layout-blog-start .entry-title h1 {
+.layout-blog-start .entry-title .entry-title-heading {
   font-weight: bold;
   font-size: 1.04rem;
   font-family: var(--monospace-font);
@@ -88,6 +127,8 @@ body {
 .layout-blog-start .entry-title a {
   color: #000;
   text-decoration: none;
+  /*  This "stretches" the link target area
+      so the link covers the entire tile. */
 }
 .layout-blog-start .entry-title a:before {
   position: absolute;
@@ -101,13 +142,14 @@ body {
   bottom: 0;
   right: 0;
   padding: 0.2rem 0.4rem;
-  color: #fd0;
-  background: #000;
+  color: var(--metadata-text-color);
+  background: var(--metadata-text-bg-color);
   backdrop-filter: blur(10px);
-  font-family: iosevka;
+  font-family: var(--metadata-font) p;
+  font-family-margin: 0;
 }
-.layout-blog-start .entry-meta p {
-  margin: 0;
+.layout-blog-start .entry-meta * {
+  display: inline;
 }
 .layout-blog-start .blog-entry {
   background: #1EC4B4;
@@ -152,6 +194,12 @@ body {
   font-family: menlo;
   font-size: 0.9rem;
 }
+@media screen and (min-width: 40em) {
+  .main.masonry-grid .grid-sizer,
+  .main.masonry-grid .grid-item {
+    width: 45%;
+  }
+}
 @media screen and (min-width: 50em) {
   .main.masonry-grid .grid-sizer,
   .main.masonry-grid .grid-item {
@@ -163,6 +211,9 @@ body {
   .main.masonry-grid .grid-item {
     width: 22%;
   }
+}
+.main.masonry-grid .gutter-sizer {
+  width: 3%;
 }
 @media screen and (min-width: 50em) {
   .main.masonry-grid .gutter-sizer {
@@ -246,11 +297,6 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
   text-decoration: none;
 }
 
-.entry-meta * {
-  display: inline;
-  background: var(--gray-light-3, #eee);
-}
-
 .isntHomePage {
   --page-bg: #fff;
   --footer-bg-color: var(--yellow);
@@ -273,18 +319,21 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
   width: 50%;
 }
 
-.layout-default .navigation {
+.layout-default .navigation,
+.layout-error .navigation {
   position: absolute;
   right: 2rem;
   top: 2rem;
 }
-.layout-default .content {
+.layout-default .content,
+.layout-error .content {
   max-width: 44rem;
   margin: 0 auto;
   font-family: var(--serif-font);
   font-size: var(--font-size-prose);
 }
-.layout-default .content h1 {
+.layout-default .content h1,
+.layout-error .content h1 {
   font-family: var(--monospace-font);
   font-weight: 300;
   font-size: 3rem;
@@ -304,39 +353,56 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
 }
 
 .intro {
-  position: fixed;
-  right: 4rem;
-  top: 12rem;
   background: var(--yellow);
-  width: 20rem;
+  transition: 0.4s all ease;
+}
+@media screen and (min-width: 50em) {
+  .intro {
+    position: fixed;
+    right: 4rem;
+    top: 12rem;
+    width: 20rem;
+  }
 }
 
 .isHomePage .sitename {
-  font-size: 8vw;
+  font-size: 2.4rem;
   width: 50%;
   display: block;
   line-height: 1;
   text-decoration: none;
 }
+@media screen and (min-width: 32em) {
+  .isHomePage .sitename {
+    font-size: 8vw;
+  }
+}
 .isHomePage .sitename h1 {
   font-size: 1em;
   font-weight: 300;
-  position: fixed;
-  left: 0;
   width: 50%;
-  top: 1rem;
+}
+@media screen and (min-width: 50em) {
+  .isHomePage .sitename h1 {
+    position: fixed;
+    left: 0;
+    top: 1rem;
+  }
 }
 .isHomePage .sitename a {
   text-decoration: none;
+}
+.isHomePage .sitename .sitename-text {
+  transition: 0.4s all ease;
 }
 .isHomePage .sitename .sitename-text span {
   color: #fff;
   background-color: #00f;
 }
-.isHomePage .sitename .sitename-text span span:first-child {
+.isHomePage .sitename .sitename-text span:first-child {
   position: relative;
 }
-.isHomePage .sitename .sitename-text span span:last-child {
+.isHomePage .sitename .sitename-text span:last-child {
   margin-left: 2rem;
 }
 
@@ -345,16 +411,17 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
   border-left: none;
   padding: 1rem;
   width: fit-content;
-}
-.navigation ul {
-  margin: 0;
-}
-.pageType-directory .navigation {
   position: absolute;
   top: 2rem;
   right: 3rem;
   text-align: right;
   border-left: 1px dashed #00beff;
+}
+.navigation ul {
+  margin: 0;
+}
+.pageType-file .navigation {
+  left: 0;
 }
 
 .isHomePage .sitename-logo {
@@ -394,4 +461,10 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
   letter-spacing: 0.6rem;
   padding-bottom: 0.6rem;
   border-color: #e388bd;
+}
+
+.hide .intro,
+.hide .sitename-text {
+  filter: blur(20px);
+  opacity: 0.4;
 }

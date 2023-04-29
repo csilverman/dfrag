@@ -9,4 +9,16 @@ document.addEventListener('DOMContentLoaded', function () {
     note.style.setProperty('--rotation', randomRotation +'deg');
   });
 
+
+  var waypoints = $('.masonry-grid').waypoint(function(direction) {
+    if(direction == 'down')
+      $('html').addClass('hide')
+    if(direction == 'up')
+      $('html').removeClass('hide')
+
+  }, {
+    offset: '34%'
+  })
+
+
 }, false);

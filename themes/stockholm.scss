@@ -1,7 +1,12 @@
+//  Responsive Font Sizing.
+@import "~rfs.scss";
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 
 /* Stockholm extension, https://github.com/annaesvensson/yellow-stockholm */
+
+/*  RENAME THIS THEME */
 
 /* Colors and fonts */
 
@@ -34,6 +39,24 @@
   --gray-light-3: #eee;
 }
 
+/*  THEME
+    ===== */
+
+:root {
+  --metadata-font: var(--monospace-font);
+  --metadata-text-color: var(--yellow);
+  --metadata-text-bg-color: #000;
+
+}
+
+
+
+
+/*  BASICS
+    ======
+    These apply sitewide
+*/
+
 html {
  font-family: var(--monospace-font);
  background: var(--page-bg);
@@ -52,6 +75,13 @@ body {
 @media print {
 }
 
+
+
+/*  Template
+    --------
+    These apply to sitewide template-level elements
+*/
+
 .footer {
   background: var(--footer-bg-color);
   color: var(--footer-bg-text);
@@ -61,20 +91,47 @@ body {
 
 
 
+/*  SPECIFIC PAGES
+    ==============
+    These apply to specific pages and types of
+    pages (home, archive)
+*/
+
+/*  Blog post listings
+    ------------------
+    This is the design for any listing of
+    posts (home or tag archives)
+*/
+
+
+
 .main.masonry-grid {
   margin: 2rem;
   margin-top: var(--spaceAtTop);
 }
 
 
-
+/*  layout-blog-start is the template used by
+    both the homepage and archive pages.
+*/
 .layout-blog-start {
   --footer-bg-color: #000;
   --footer-bg-text: var(--gray-light-3);
   --spaceAtTop: 34vw;
 
+
+/*  blog post module
+    ················
+    This is for individual blog post tiles on
+    the home or archive page.
+*/
+
  .featured-image {
    line-height: 0;
+
+   img {
+     width: 100%;
+   }
  }
 
  .blog-entry {
@@ -82,9 +139,6 @@ body {
   transform: rotate(var(--rotation));
  }
 
- .featured-image img {
-   width: 100%;
- }
  .entry {
    position: relative;
  }
@@ -95,7 +149,7 @@ body {
    width: 100%;
    height: 100%;
 
-   h1 {
+   .entry-title-heading {
     font-weight: bold;
     font-size: 1.04rem;
     font-family: var(--monospace-font);
@@ -105,6 +159,8 @@ body {
     color: #000;
     text-decoration: none;
 
+    /*  This "stretches" the link target area
+        so the link covers the entire tile. */
     &:before {
        position: absolute;
        top: 0;
@@ -115,20 +171,31 @@ body {
    }
  }
 
+ /* Unlike on WordPress, where blog posts can have a lot
+    of associated metadata, I only have one value here:
+    the date it was posted.
+  */
  .entry-meta {
    position: absolute;
    bottom: 0;
    right: 0;
    padding: 0.2rem 0.4rem;
-   color: #fd0;
-   background: #000;
+   color: var(--metadata-text-color);
+   background: var(--metadata-text-bg-color);
    backdrop-filter: blur(10px);
-   font-family: iosevka;
+   font-family: var(--metadata-font)
 
    p {
      margin: 0;
    }
+
+   * {
+     display: inline;
+   }
  }
+
+
+
 
  .blog-entry {
   background: #1EC4B4;
@@ -216,6 +283,9 @@ body {
 
   .grid-sizer,
   .grid-item {
+    @media screen and (min-width: 40em) {
+      width: 45%;
+    }
     @media screen and (min-width: 50em) {
       width: 30%;
     }
@@ -225,6 +295,8 @@ body {
   }
 
   .gutter-sizer {
+    width: 3%;
+
     @media screen and (min-width: 50em) {
       width: 3%;
     }
@@ -322,14 +394,6 @@ a {
   }
 }
 
-.entry-meta {
-  * {
-    display: inline;
-    background: var(--gray-light-3, #eee);
-  }
-}
-
-
 .isntHomePage {
   --page-bg: #fff;
   --footer-bg-color: var(--yellow);
@@ -353,7 +417,8 @@ a {
   width: 50%;
 }
 
-.layout-default {
+.layout-default,
+.layout-error {
   .navigation {
     position: absolute;
     right: 2rem;
@@ -386,16 +451,25 @@ a {
 }
 
 .intro {
+  background: var(--yellow);
+  transition: 0.4s all ease;
+
+  @media screen and (min-width: 50em) {
     position: fixed;
     right: 4rem;
     top: 12rem;
-    background: var(--yellow);
     width: 20rem;
+  }
 }
 
 .isHomePage {
   .sitename {
-   font-size: 8vw;
+    font-size: 2.4rem;
+
+    @media screen and (min-width: 32em) {
+      font-size: 8vw;
+    }
+
    width: 50%;
    display: block;
    line-height: 1;
@@ -404,26 +478,33 @@ a {
    h1 {
     font-size: 1em;
     font-weight: 300;
-    position: fixed;
-    left: 0;
     width: 50%;
-    top: 1rem;
+
+    @media screen and (min-width: 50em) {
+      position: fixed;
+      left: 0;
+      top: 1rem;
+    }
+
    }
    a {
     text-decoration: none;
   }
-  .sitename-text span {
+  .sitename-text {
+    transition: 0.4s all ease;
+  span {
     // color: var(--yellow);
     color: #fff;
     background-color: #00f;
 
-    span:first-child {
+    &:first-child {
       position: relative;
     }
-    span:last-child {
+    &:last-child {
       margin-left: 2rem;
     }
    }
+ }
   }
 }
 
@@ -438,13 +519,19 @@ a {
     margin: 0;
   }
 
-  .pageType-directory & {
+//  .layout-default &,
+//  .layout-error & {
     position: absolute;
     top: 2rem;
     right: 3rem;
     text-align: right;
     border-left: $nav-border;
+//  }
+
+  .pageType-file & {
+    left: 0;
   }
+
 }
 
 .sitename-logo {
@@ -490,5 +577,14 @@ a {
       padding-bottom: 0.6rem;
       border-color: #e388bd;
     }
+  }
+}
+
+
+.hide {
+  .intro,
+  .sitename-text {
+      filter: blur(20px);
+      opacity: 0.4;
   }
 }

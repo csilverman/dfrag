@@ -16,8 +16,9 @@ class YellowMasonry {
         $output = null;
         if ($name=="footer") {
             $extensionLocation = $this->yellow->system->get("coreServerBase").$this->yellow->system->get("coreExtensionLocation");
-            $output = "<script type=\"text/javascript\" src=\"{$extensionLocation}masonry.js\"></script>\n";
-            $output .= "<script type=\"text/javascript\" src=\"{$extensionLocation}masonry-load.js\"></script>\n";
+            $output = "<script type=\"text/javascript\" src=\"{$extensionLocation}/masonry.js\"></script>\n";
+
+            $output .= "<script type=\"text/javascript\" src=\"{$extensionLocation}/masonry-load.js\"></script>\n";
         }
         return $output;
     }
