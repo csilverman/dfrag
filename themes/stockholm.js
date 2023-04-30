@@ -10,6 +10,17 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 
+  const frags = document.querySelectorAll('.shape');
+
+  frags.forEach((frag) => {
+    var randomRotation = Math.floor(Math.random()*10+1);
+    if( Math.round(Math.random()) )
+      randomRotation = randomRotation * -1;
+    frag.style.transform = 'rotate(' + randomRotation +'deg)';
+  });
+
+
+
   var waypoints = $('.masonry-grid').waypoint(function(direction) {
     if(direction == 'down')
       $('html').addClass('hide')
