@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var randomRotation = Math.floor(Math.random()*10+1);
     if( Math.round(Math.random()) )
       randomRotation = randomRotation * -1;
-    frag.style.transform = 'rotate(' + randomRotation +'deg)';
+    // frag.style.transform = 'rotate(' + randomRotation +'deg)';
+    frag.style.setProperty('--frag-rotation', randomRotation + 'deg');
   });
 
 
@@ -31,5 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
     offset: '34%'
   })
 
+  //  randomize fragment colors
+  var shape_1_fill_colors = Array("#f00", "#ff0", "#0f0");
+  var shape_1_fill = shape_1_fill_colors[Math.floor(Math.random()*shape_1_fill_colors.length)];
+
+  var shape_2_fill_colors = Array("#030", "#f0a", "#888");
+  var shape_2_fill = shape_2_fill_colors[Math.floor(Math.random()*shape_2_fill_colors.length)];
+
+  $(".shape-1").get(0).style.setProperty("--shape-1-fill", shape_1_fill);
+  $(".shape-2").get(0).style.setProperty("--shape-2-fill", shape_2_fill);
 
 }, false);

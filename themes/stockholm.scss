@@ -584,17 +584,33 @@ a {
 }
 
 .shape {
-  transform: 1s all ease;
+  transition: 0.4s all ease;
+  transform: rotate(var(--frag-rotation)) !important;
+}
+
+.sitename a:hover {
+  background: transparent !important;
+
+  .shape {
+    transform: rotate(0deg) !important;
+  }
 }
 
 .shape.shape-1 {
-    width: 4rem;
+    width: 3rem;
 }
-
 .shape.shape-2 {
-    width: 5.6rem;
+    width: 4.2rem;
 }
-
+.shape svg {
+  fill: transparent;
+}
+.shape-1 svg {
+  fill: var(--shape-1-fill);
+}
+.shape-2 svg {
+  fill: var(--shape-2-fill);
+}
 
 .photoswipe {
   a {
@@ -606,4 +622,9 @@ a {
       height: auto;
     }
   }
+}
+
+
+.sitename-content {
+    margin: 4rem 2rem;
 }

@@ -2,6 +2,7 @@
 
 <?php
 
+$page = $this->yellow->page;
 
 if ($this->yellow->extension->isExisting("jollyfunctions")) {
     $pageClasses = $this->yellow->extension->get("jollyfunctions")->ThePageClasses($this->yellow, $this->yellow->page);
@@ -23,10 +24,20 @@ if ($this->yellow->extension->isExisting("jollyfunctions")) {
 </head>
 <body>
 
+<?php
+  $thisPageTitle = $page->getHtml("titleContent");
+
+  //  Are we on the home page?
+  if( $thisPageTitle == "Blog")
+    $sitename_tag = 'h1';
+  else $sitename_tag = 'div';
+?>
+
+
 <div class="page">
 <div class="header" role="banner">
 <div class="sitename">
-  <h1>
+  <<?php echo $sitename_tag; ?> class="sitename-content">
     <a href="<?php echo $this->yellow->page->getBase(true)."/" ?>">
       <?php // echo $this->yellow->page->getHtml("sitename") ?>
 
@@ -44,7 +55,7 @@ if ($this->yellow->extension->isExisting("jollyfunctions")) {
         <span>Fragments</span>
       </div>
     </a>
-  </h1>
+  </<?php echo $sitename_tag; ?>>
 
 
 <?php echo $this->yellow->page->getPage("header")->getContent() ?>
