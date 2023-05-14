@@ -14,4 +14,4 @@ jobs:
         server: designfragments.csilverman.com
         username: dh_siz3d6
         password: ${{ secrets.ftp_password }}
-        server-dir: /designfragments.csilverman.com/
+        server-dir: /designfragments.csilverman.com/system/
