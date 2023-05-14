@@ -279,6 +279,7 @@ body {
 
 .sitename-content {
   margin: 4rem 2rem;
+  border: 1px solid #f00;
 }
 
 a:link, a:visited {
