@@ -1,0 +1,84 @@
+
+/*  blogpost-module
+    ===============
+    This is how a blog post is represented on
+    home and archive pages
+*/
+
+.blog-post-module {
+  .featured-image {
+    line-height: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .entry {
+    transition: 0.4s all ease;
+    margin-bottom: 30px;
+    transform: rotate(var(--rotation));
+    position: relative;
+
+    &:hover {
+      background: #fff !important;
+    	transform: scale(1.04);
+
+      .featured-image {
+        mix-blend-mode: unset;
+
+        img {
+          filter: unset;
+        }
+      }
+    }
+
+    &-title {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-title-heading {
+     font-weight: bold;
+     font-size: 1.04rem;
+     font-family: var(--font-monospace);
+    }
+
+    &-meta {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      padding: 0.2rem 0.4rem;
+      color: var(--metadata-text-color);
+      background: var(--metadata-text-bg-color);
+      backdrop-filter: blur(10px);
+      font-family: var(--metadata-font)
+
+      p {
+        margin: 0;
+      }
+
+      * {
+        display: inline;
+      }
+    }
+
+  }
+
+    a {
+     color: #000;
+     text-decoration: none;
+
+     /*  This "stretches" the link target area
+         so the link covers the entire tile. */
+     &:before {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+      }
+    }
+  }

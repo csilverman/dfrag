@@ -1,6 +1,6 @@
 <?php $this->yellow->layout("header") ?>
 
-<div class="intro">
+<div class="page-intro">
 <?php echo $this->yellow->page->getHtml("SiteInfo") ?>
 </div>
 
@@ -34,7 +34,7 @@
 
 
 
-<div class="blog-entry grid-item <?php echo $page->getHtml("entryClass") ?>">
+<div class="blog-post-module blog-entry grid-item <?php echo $page->getHtml("entryClass") ?>">
 
   <div class="featured-image">
     <?php if ($this->yellow->extension->isExisting("jollyfunctions")) {

@@ -1,0 +1,16 @@
+
+/*  page-intro
+    ==========
+    The yellow tagline on the homepage
+*/
+.page-intro {
+  background: var(--yellow);
+  transition: 0.4s all ease;
+
+  @media screen and (min-width: 50em) {
+    position: fixed;
+    right: 4rem;
+    top: 12rem;
+    width: 20rem;
+  }
+}

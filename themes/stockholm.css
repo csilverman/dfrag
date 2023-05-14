@@ -5,38 +5,29 @@
 /* Colors and fonts */
 :root {
   --bg: #1f2122;
-  --page-bg: #fff;
-  --code-bg: #f7f7f7;
-  --notice1-bg: #fffbf0;
-  --notice2-bg: #fdf0f0;
-  --notice3-bg: #f0f8fe;
-  --heading: #111;
   --text: #666;
   --code: #666;
   --link: #07d;
   --link-active: #29f;
-  --blockquote-accent: #29f;
-  --notice1-accent: #fb0;
-  --notice2-accent: #d00;
-  --notice3-accent: #08e;
-  --separator: #ddd;
-  --border: #bbb;
-  --font: "Open Sans", Helvetica, sans-serif;
-  --monospace-font: "Fira Code", Iosevka-Aile, monospace;
-  --serif-font: "Source Serif Pro";
+  --font-monospace: "Fira Code", Iosevka-Aile, monospace;
+  --font-serif: "Source Serif Pro";
   --font-size-prose: 1.3rem;
   --rotation: 2;
   --yellow: #ff0;
   --yellow-light: #ffff64;
   --gray-light-3: #eee;
+  --blue-deep: #00f;
+  --crimson-forText: #e2035c;
 }
 
 /*  THEME
     ===== */
 :root {
-  --metadata-font: var(--monospace-font);
+  --metadata-font: var(--font-monospace);
   --metadata-text-color: var(--yellow);
   --metadata-text-bg-color: #000;
+  --link-bg-color: transparent;
+  --link-text-color: var(--crimson-forText);
 }
 
 /*  BASICS
@@ -44,7 +35,7 @@
     These apply sitewide
 */
 html {
-  font-family: var(--monospace-font);
+  font-family: var(--font-monospace);
   background: var(--page-bg);
   box-sizing: border-box;
 }
@@ -78,11 +69,6 @@ body {
     This is the design for any listing of
     posts (home or tag archives)
 */
-.main.masonry-grid {
-  margin: 2rem;
-  margin-top: var(--spaceAtTop);
-}
-
 /*  layout-blog-start is the template used by
     both the homepage and archive pages.
 */
@@ -99,57 +85,6 @@ body {
      of associated metadata, I only have one value here:
      the date it was posted.
    */
-}
-.layout-blog-start .featured-image {
-  line-height: 0;
-}
-.layout-blog-start .featured-image img {
-  width: 100%;
-}
-.layout-blog-start .blog-entry {
-  margin-bottom: 30px;
-  transform: rotate(var(--rotation));
-}
-.layout-blog-start .entry {
-  position: relative;
-}
-.layout-blog-start .entry-title {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-.layout-blog-start .entry-title .entry-title-heading {
-  font-weight: bold;
-  font-size: 1.04rem;
-  font-family: var(--monospace-font);
-}
-.layout-blog-start .entry-title a {
-  color: #000;
-  text-decoration: none;
-  /*  This "stretches" the link target area
-      so the link covers the entire tile. */
-}
-.layout-blog-start .entry-title a:before {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  content: "";
-}
-.layout-blog-start .entry-meta {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 0.2rem 0.4rem;
-  color: var(--metadata-text-color);
-  background: var(--metadata-text-bg-color);
-  backdrop-filter: blur(10px);
-  font-family: var(--metadata-font) p;
-  font-family-margin: 0;
-}
-.layout-blog-start .entry-meta * {
-  display: inline;
 }
 .layout-blog-start .blog-entry {
   background: #1EC4B4;
@@ -194,58 +129,14 @@ body {
   font-family: menlo;
   font-size: 0.9rem;
 }
-@media screen and (min-width: 40em) {
-  .main.masonry-grid .grid-sizer,
-  .main.masonry-grid .grid-item {
-    width: 45%;
-  }
-}
-@media screen and (min-width: 50em) {
-  .main.masonry-grid .grid-sizer,
-  .main.masonry-grid .grid-item {
-    width: 30%;
-  }
-}
-@media screen and (min-width: 60em) {
-  .main.masonry-grid .grid-sizer,
-  .main.masonry-grid .grid-item {
-    width: 22%;
-  }
-}
-.main.masonry-grid .gutter-sizer {
-  width: 3%;
-}
-@media screen and (min-width: 50em) {
-  .main.masonry-grid .gutter-sizer {
-    width: 3%;
-  }
-}
-@media screen and (min-width: 60em) {
-  .main.masonry-grid .gutter-sizer {
-    width: 3%;
-  }
-}
-
-.blog-entry {
-  transition: 0.4s all ease;
-}
-.blog-entry:hover {
-  background: #fff !important;
-  transform: scale(1.04);
-}
-.blog-entry:hover .featured-image {
-  mix-blend-mode: unset;
-}
-.blog-entry:hover .featured-image img {
-  filter: unset;
-}
 
 .layout-blog .entry {
   overflow: hidden;
 }
 .layout-blog .featured-image {
   width: 50%;
-  FLOAT: LEFT;
+  float: left;
+  padding-right: 1rem;
 }
 .layout-blog img {
   width: 100%;
@@ -270,34 +161,8 @@ body {
 }
 
 .entry-content p {
-  font-family: var(--serif-font);
+  font-family: var(--font-serif);
   font-size: var(--font-size-prose);
-}
-
-.previousnext {
-  position: fixed;
-  bottom: 1rem;
-  right: 2rem;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(4px);
-  padding: 0 1rem;
-}
-
-.previousnext a {
-  display: block;
-}
-.previousnext a:first-child {
-  margin-bottom: 1rem;
-}
-
-a:link, a:visited {
-  background: var(--link-bg-color, transparent);
-  color: var(--link-text-color, #E2035C);
-}
-a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
-  background: var(--link-bg-color-hover, #00f);
-  color: var(--link-text-color-hover, #fff);
-  text-decoration: none;
 }
 
 .isntHomePage {
@@ -326,111 +191,14 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
 .layout-error .content {
   max-width: 44rem;
   margin: 0 auto;
-  font-family: var(--serif-font);
+  font-family: var(--font-serif);
   font-size: var(--font-size-prose);
 }
 .layout-default .content h1,
 .layout-error .content h1 {
-  font-family: var(--monospace-font);
+  font-family: var(--font-monospace);
   font-weight: 300;
   font-size: 3rem;
-}
-
-.navigation {
-  position: absolute;
-  right: 2rem;
-  top: 2rem;
-}
-
-.navigation ul {
-  padding: 0;
-}
-
-.navigation li {
-  list-style: none;
-}
-
-.navigation li:before {
-  content: "—";
-  margin-right: 0.3rem;
-}
-
-.navigation {
-  border: 1px dashed #00beff;
-  padding: 1rem;
-  width: fit-content;
-}
-.navigation ul {
-  margin: 0;
-}
-
-.intro {
-  background: var(--yellow);
-  transition: 0.4s all ease;
-}
-@media screen and (min-width: 50em) {
-  .intro {
-    position: fixed;
-    right: 4rem;
-    top: 12rem;
-    width: 20rem;
-  }
-}
-
-.isHomePage .sitename {
-  font-size: 2.4rem;
-  width: 50%;
-  display: block;
-  line-height: 1;
-  text-decoration: none;
-}
-@media screen and (min-width: 32em) {
-  .isHomePage .sitename {
-    font-size: 8vw;
-  }
-}
-.isHomePage .sitename h1 {
-  font-size: 1em;
-  font-weight: 300;
-  width: 50%;
-}
-@media screen and (min-width: 50em) {
-  .isHomePage .sitename h1 {
-    position: fixed;
-    left: 0;
-    top: 1rem;
-  }
-}
-.isHomePage .sitename a {
-  text-decoration: none;
-}
-.isHomePage .sitename .sitename-text {
-  transition: 0.4s all ease;
-}
-.isHomePage .sitename .sitename-text span {
-  color: #fff;
-  background-color: #00f;
-}
-.isHomePage .sitename .sitename-text span:first-child {
-  position: relative;
-}
-.isHomePage .sitename .sitename-text span:last-child {
-  margin-left: 2rem;
-}
-
-.isHomePage .sitename-logo {
-  display: none;
-}
-.isntHomePage .sitename-logo {
-  width: 10rem;
-  margin-left: 2rem;
-}
-
-.layout-default .sitename-text,
-.pageType-file .sitename-text {
-  position: absolute;
-  overflow: hidden;
-  opacity: 0;
 }
 
 .pageType-directory.isntHomePage {
@@ -447,7 +215,7 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
 .pageType-directory.isntHomePage .pageTitle span {
   display: block;
   font-weight: 400;
-  font-family: var(--serif-font);
+  font-family: var(--font-serif);
   font-size: 1.2rem;
   font-style: italic;
   text-transform: uppercase;
@@ -511,4 +279,301 @@ a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
 
 .sitename-content {
   margin: 4rem 2rem;
+}
+
+a:link, a:visited {
+  background: var(--link-bg-color);
+  color: var(--link-text-color);
+}
+a:link:hover, a:link:focus, a:visited:hover, a:visited:focus {
+  background: var(--link-bg-color-hover, #00f);
+  color: var(--link-text-color-hover, #fff);
+  text-decoration: none;
+}
+
+/*  blogpost-module
+    ===============
+    This is how a blog post is represented on
+    home and archive pages
+*/
+.blog-post-module .featured-image {
+  line-height: 0;
+}
+.blog-post-module .featured-image img {
+  width: 100%;
+}
+.blog-post-module .entry {
+  transition: 0.4s all ease;
+  margin-bottom: 30px;
+  transform: rotate(var(--rotation));
+  position: relative;
+}
+.blog-post-module .entry:hover {
+  background: #fff !important;
+  transform: scale(1.04);
+}
+.blog-post-module .entry:hover .featured-image {
+  mix-blend-mode: unset;
+}
+.blog-post-module .entry:hover .featured-image img {
+  filter: unset;
+}
+.blog-post-module .entry-title {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.blog-post-module .entry-title-heading {
+  font-weight: bold;
+  font-size: 1.04rem;
+  font-family: var(--font-monospace);
+}
+.blog-post-module .entry-meta {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.2rem 0.4rem;
+  color: var(--metadata-text-color);
+  background: var(--metadata-text-bg-color);
+  backdrop-filter: blur(10px);
+  font-family: var(--metadata-font) p;
+  font-family-margin: 0;
+}
+.blog-post-module .entry-meta * {
+  display: inline;
+}
+.blog-post-module a {
+  color: #000;
+  text-decoration: none;
+  /*  This "stretches" the link target area
+      so the link covers the entire tile. */
+}
+.blog-post-module a:before {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+}
+
+/*  blogpost-module
+    ===============
+    This is how a blog post is represented on
+    home and archive pages
+*/
+.blog-post-module .featured-image {
+  line-height: 0;
+}
+.blog-post-module .featured-image img {
+  width: 100%;
+}
+.blog-post-module .entry {
+  transition: 0.4s all ease;
+  margin-bottom: 30px;
+  transform: rotate(var(--rotation));
+  position: relative;
+}
+.blog-post-module .entry:hover {
+  background: #fff !important;
+  transform: scale(1.04);
+}
+.blog-post-module .entry:hover .featured-image {
+  mix-blend-mode: unset;
+}
+.blog-post-module .entry:hover .featured-image img {
+  filter: unset;
+}
+.blog-post-module .entry-title {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.blog-post-module .entry-title-heading {
+  font-weight: bold;
+  font-size: 1.04rem;
+  font-family: var(--font-monospace);
+}
+.blog-post-module .entry-meta {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.2rem 0.4rem;
+  color: var(--metadata-text-color);
+  background: var(--metadata-text-bg-color);
+  backdrop-filter: blur(10px);
+  font-family: var(--metadata-font) p;
+  font-family-margin: 0;
+}
+.blog-post-module .entry-meta * {
+  display: inline;
+}
+.blog-post-module a {
+  color: #000;
+  text-decoration: none;
+  /*  This "stretches" the link target area
+      so the link covers the entire tile. */
+}
+.blog-post-module a:before {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+}
+
+/*  navigation
+    ===============
+*/
+.navigation {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  border: 1px dashed #00beff;
+  padding: 1rem;
+  width: fit-content;
+}
+.navigation ul {
+  margin: 0;
+  padding: 0;
+}
+.navigation li {
+  list-style: none;
+}
+.navigation li:before {
+  content: "—";
+  margin-right: 0.3rem;
+}
+
+/*  previousnext
+    ============
+    The prev and next links on blog posts
+*/
+.previousnext {
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  padding: 0 1rem;
+}
+
+.previousnext a {
+  display: block;
+}
+.previousnext a:first-child {
+  margin-bottom: 1rem;
+}
+
+/*  page-intro
+    ==========
+    The yellow tagline on the homepage
+*/
+.page-intro {
+  background: var(--yellow);
+  transition: 0.4s all ease;
+}
+@media screen and (min-width: 50em) {
+  .page-intro {
+    position: fixed;
+    right: 4rem;
+    top: 12rem;
+    width: 20rem;
+  }
+}
+
+/*  sitename
+    ========
+
+*/
+.isHomePage .sitename {
+  font-size: 2.4rem;
+  width: 50%;
+  display: block;
+  line-height: 1;
+  text-decoration: none;
+}
+@media screen and (min-width: 32em) {
+  .isHomePage .sitename {
+    font-size: 8vw;
+  }
+}
+.isHomePage .sitename h1 {
+  font-size: 1em;
+  font-weight: 300;
+  width: 50%;
+}
+@media screen and (min-width: 50em) {
+  .isHomePage .sitename h1 {
+    position: fixed;
+    left: 0;
+    top: 1rem;
+  }
+}
+.isHomePage .sitename a {
+  text-decoration: none;
+}
+
+.isHomePage .sitename-text {
+  transition: 0.4s all ease;
+}
+.isHomePage .sitename-text span {
+  color: #fff;
+  background-color: var(--sitename-text, var(--blue-deep));
+}
+.isHomePage .sitename-text span:first-child {
+  position: relative;
+}
+.isHomePage .sitename-text span:last-child {
+  margin-left: 2rem;
+}
+.layout-default .sitename-text, .pageType-file .sitename-text {
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.isHomePage .sitename-logo {
+  display: none;
+}
+.isntHomePage .sitename-logo {
+  width: 10rem;
+  margin-left: 2rem;
+}
+
+.main.masonry-grid {
+  margin: 2rem;
+  margin-top: var(--spaceAtTop);
+}
+@media screen and (min-width: 40em) {
+  .main.masonry-grid .grid-sizer,
+  .main.masonry-grid .grid-item {
+    width: 45%;
+  }
+}
+@media screen and (min-width: 50em) {
+  .main.masonry-grid .grid-sizer,
+  .main.masonry-grid .grid-item {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 60em) {
+  .main.masonry-grid .grid-sizer,
+  .main.masonry-grid .grid-item {
+    width: 22%;
+  }
+}
+.main.masonry-grid .gutter-sizer {
+  width: 3%;
+}
+@media screen and (min-width: 50em) {
+  .main.masonry-grid .gutter-sizer {
+    width: 3%;
+  }
+}
+@media screen and (min-width: 60em) {
+  .main.masonry-grid .gutter-sizer {
+    width: 3%;
+  }
 }

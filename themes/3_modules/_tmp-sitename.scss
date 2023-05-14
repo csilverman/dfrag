@@ -1,0 +1,75 @@
+
+/*  sitename
+    ========
+
+*/
+
+//  As shown below, if the component needs to
+//  change depending on the page it's on, that should
+//  be nested within the component itself
+.sitename {
+  .isHomePage & {
+    font-size: 2.4rem;
+    width: 50%;
+    display: block;
+    line-height: 1;
+    text-decoration: none;
+
+    @media screen and (min-width: 32em) {
+      font-size: 8vw;
+    }
+
+    h1 {
+      font-size: 1em;
+      font-weight: 300;
+      width: 50%;
+
+      @media screen and (min-width: 50em) {
+        position: fixed;
+        left: 0;
+        top: 1rem;
+      }
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.sitename-text {
+  .isHomePage & {
+    transition: 0.4s all ease;
+    span {
+      color: #fff;
+      //  All element colors should be variables:
+      //  - first is a variable specific to that element, for theming
+      //  - second is a default value
+      background-color: var(--sitename-text, var(--blue-deep));
+
+      &:first-child {
+        position: relative;
+      }
+      &:last-child {
+        margin-left: 2rem;
+      }
+    }
+  }
+  .layout-default &,
+  .pageType-file & {
+    position: absolute;
+    overflow: hidden;
+    opacity: 0;
+  }
+}
+
+
+.sitename-logo {
+  .isHomePage & {
+    display: none;
+  }
+  .isntHomePage & {
+    width: 10rem;
+    margin-left: 2rem;
+  }
+}

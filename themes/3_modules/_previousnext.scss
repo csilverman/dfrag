@@ -1,0 +1,21 @@
+
+/*  previousnext
+    ============
+    The prev and next links on blog posts
+*/
+
+.previousnext {
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(4px);
+    padding: 0 1rem;
+}
+.previousnext a {
+    display: block;
+
+    &:first-child {
+      margin-bottom: 1rem;
+    }
+}

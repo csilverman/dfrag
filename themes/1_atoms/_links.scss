@@ -1,0 +1,14 @@
+a {
+  &:link,
+  &:visited {
+    background: var(--link-bg-color);
+    color: var(--link-text-color);
+
+    &:hover,
+    &:focus {
+      background: var(--link-bg-color-hover, #00f);
+      color: var(--link-text-color-hover, #fff);
+      text-decoration: none;
+    }
+  }
+}

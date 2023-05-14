@@ -1,0 +1,30 @@
+
+.main.masonry-grid {
+  margin: 2rem;
+  margin-top: var(--spaceAtTop);
+
+  .grid-sizer,
+  .grid-item {
+    @media screen and (min-width: 40em) {
+      width: 45%;
+    }
+    @media screen and (min-width: 50em) {
+      width: 30%;
+    }
+    @media screen and (min-width: 60em) {
+      width: 22%;
+    }
+  }
+
+  .gutter-sizer {
+    width: 3%;
+
+    @media screen and (min-width: 50em) {
+      width: 3%;
+    }
+    @media screen and (min-width: 60em) {
+      width: 3%;
+    }
+  }
+
+}

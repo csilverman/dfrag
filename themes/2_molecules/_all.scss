@@ -1,0 +1,16 @@
+
+//  Brad Frost did not, as far as I know, specify the
+//  exact differences between a molecule and an organism
+//  (module in this case); just that molecules are simpler.
+//  So I'm going to say that a molecule is three atoms or
+//  less.
+//
+//  So a call-to-action link would be a molecule. A simple
+//  search box (which Frost did include as an example) would
+//  be a molecule. A blog post would be a module.
+//
+//  (I thought of designating a CTA link as an atom, but it's
+//  hard to do that since it would be comprised of atoms, like
+//  an icon, a link, etc.)
+
+@import "_molecule";

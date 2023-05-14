@@ -12,41 +12,37 @@
 
 :root {
   --bg: #1f2122;
-  --page-bg: #fff;
-  --code-bg: #f7f7f7;
-  --notice1-bg: #fffbf0;
-  --notice2-bg: #fdf0f0;
-  --notice3-bg: #f0f8fe;
-  --heading: #111;
+
   --text: #666;
   --code: #666;
+
   --link: #07d;
   --link-active: #29f;
-  --blockquote-accent: #29f;
-  --notice1-accent: #fb0;
-  --notice2-accent: #d00;
-  --notice3-accent: #08e;
-  --separator: #ddd;
-  --border: #bbb;
-  --font: "Open Sans", Helvetica, sans-serif;
-  --monospace-font: "Fira Code", Iosevka-Aile, monospace;
-  --serif-font: "Source Serif Pro";
+
+  --font-monospace: "Fira Code", Iosevka-Aile, monospace;
+  --font-serif: "Source Serif Pro";
   --font-size-prose: 1.3rem;
   --rotation: 2;
+
+//  Colors
 
   --yellow: #ff0;
   --yellow-light: #ffff64;
   --gray-light-3: #eee;
+  --blue-deep: #00f;
+  --crimson-forText: #e2035c;
 }
 
 /*  THEME
     ===== */
 
 :root {
-  --metadata-font: var(--monospace-font);
+  --metadata-font: var(--font-monospace);
   --metadata-text-color: var(--yellow);
   --metadata-text-bg-color: #000;
 
+  --link-bg-color: transparent;
+  --link-text-color: var(--crimson-forText);
 }
 
 
@@ -58,7 +54,7 @@
 */
 
 html {
- font-family: var(--monospace-font);
+ font-family: var(--font-monospace);
  background: var(--page-bg);
  box-sizing: border-box;
 }
@@ -105,12 +101,6 @@ body {
 
 
 
-.main.masonry-grid {
-  margin: 2rem;
-  margin-top: var(--spaceAtTop);
-}
-
-
 /*  layout-blog-start is the template used by
     both the homepage and archive pages.
 */
@@ -126,73 +116,11 @@ body {
     the home or archive page.
 */
 
- .featured-image {
-   line-height: 0;
-
-   img {
-     width: 100%;
-   }
- }
-
- .blog-entry {
-  margin-bottom: 30px;
-  transform: rotate(var(--rotation));
- }
-
- .entry {
-   position: relative;
- }
-
- .entry-title {
-   position: absolute;
-   top: 0;
-   width: 100%;
-   height: 100%;
-
-   .entry-title-heading {
-    font-weight: bold;
-    font-size: 1.04rem;
-    font-family: var(--monospace-font);
-   }
-
-   a {
-    color: #000;
-    text-decoration: none;
-
-    /*  This "stretches" the link target area
-        so the link covers the entire tile. */
-    &:before {
-       position: absolute;
-       top: 0;
-       width: 100%;
-       height: 100%;
-       content: '';
-     }
-   }
- }
 
  /* Unlike on WordPress, where blog posts can have a lot
     of associated metadata, I only have one value here:
     the date it was posted.
   */
- .entry-meta {
-   position: absolute;
-   bottom: 0;
-   right: 0;
-   padding: 0.2rem 0.4rem;
-   color: var(--metadata-text-color);
-   background: var(--metadata-text-bg-color);
-   backdrop-filter: blur(10px);
-   font-family: var(--metadata-font)
-
-   p {
-     margin: 0;
-   }
-
-   * {
-     display: inline;
-   }
- }
 
 
 
@@ -209,6 +137,11 @@ body {
   }
  }
 }
+
+        // end blog-post-module
+    // end Blog post listings
+// end SPECIFIC PAGES
+
 
 .main.masonry-grid {
 
@@ -280,49 +213,9 @@ body {
      font-size: 0.9rem;
     }
   }
-
-  .grid-sizer,
-  .grid-item {
-    @media screen and (min-width: 40em) {
-      width: 45%;
-    }
-    @media screen and (min-width: 50em) {
-      width: 30%;
-    }
-    @media screen and (min-width: 60em) {
-      width: 22%;
-    }
-  }
-
-  .gutter-sizer {
-    width: 3%;
-
-    @media screen and (min-width: 50em) {
-      width: 3%;
-    }
-    @media screen and (min-width: 60em) {
-      width: 3%;
-    }
-  }
 }
 
 
-.blog-entry {
-  transition: 0.4s all ease;
-
-  &:hover {
-    background: #fff !important;
-  	transform: scale(1.04);
-
-    .featured-image {
-      mix-blend-mode: unset;
-
-      img {
-        filter: unset;
-      }
-    }
-  }
-}
 
 .layout-blog {
 
@@ -332,7 +225,8 @@ body {
 
   .featured-image {
       width: 50%;
-      FLOAT: LEFT;
+      float: left;
+      padding-right: 1rem;
   }
 
   img {
@@ -361,42 +255,10 @@ body {
 
 .entry-content {
   p {
-    font-family: var(--serif-font);
+    font-family: var(--font-serif);
     font-size: var(--font-size-prose);
   }
 }
-.previousnext {
-    position: fixed;
-    bottom: 1rem;
-    right: 2rem;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(4px);
-    padding: 0 1rem;
-}
-.previousnext a {
-    display: block;
-
-    &:first-child {
-      margin-bottom: 1rem;
-    }
-}
-
-
-a {
-  &:link,
-  &:visited {
-    background: var(--link-bg-color, transparent);
-    color: var(--link-text-color, #E2035C);
-
-    &:hover,
-    &:focus {
-      background: var(--link-bg-color-hover, #00f);
-      color: var(--link-text-color-hover, #fff);
-      text-decoration: none;
-    }
-  }
-}
-
 .isntHomePage {
   --page-bg: #fff;
   --footer-bg-color: var(--yellow);
@@ -425,122 +287,18 @@ a {
   .content {
     max-width: 44rem;
     margin: 0 auto;
-    font-family: var(--serif-font);
+    font-family: var(--font-serif);
     font-size: var(--font-size-prose);
 
     h1 {
-      font-family: var(--monospace-font);
+      font-family: var(--font-monospace);
       font-weight: 300;
       font-size: 3rem;
     }
   }
 }
 
-.navigation {
-  position: absolute;
-  right: 2rem;
-  top: 2rem;
-}
-.navigation ul {
-    padding: 0;
-}
-.navigation li {
-    list-style: none;
-}
 
-.navigation li:before {
-    content: "—";
-    margin-right: 0.3rem
-}
-
-.navigation {
-  $nav-border: 1px dashed #00beff;
-  border: $nav-border;
-  padding: 1rem;
-  width: fit-content;
-
-  ul {
-    margin: 0;
-  }
-}
-
-
-.intro {
-  background: var(--yellow);
-  transition: 0.4s all ease;
-
-  @media screen and (min-width: 50em) {
-    position: fixed;
-    right: 4rem;
-    top: 12rem;
-    width: 20rem;
-  }
-}
-
-.isHomePage {
-  .sitename {
-    font-size: 2.4rem;
-
-    @media screen and (min-width: 32em) {
-      font-size: 8vw;
-    }
-
-   width: 50%;
-   display: block;
-   line-height: 1;
-   text-decoration: none;
-
-   h1 {
-    font-size: 1em;
-    font-weight: 300;
-    width: 50%;
-
-    @media screen and (min-width: 50em) {
-      position: fixed;
-      left: 0;
-      top: 1rem;
-    }
-
-   }
-   a {
-    text-decoration: none;
-  }
-  .sitename-text {
-    transition: 0.4s all ease;
-  span {
-    // color: var(--yellow);
-    color: #fff;
-    background-color: #00f;
-
-    &:first-child {
-      position: relative;
-    }
-    &:last-child {
-      margin-left: 2rem;
-    }
-   }
- }
-  }
-}
-
-.sitename-logo {
-  .isHomePage & {
-    display: none;
-  }
-  .isntHomePage & {
-    width: 10rem;
-    margin-left: 2rem;
-  }
-}
-
-.layout-default,
-.pageType-file {
-  .sitename-text {
-    position: absolute;
-    overflow: hidden;
-    opacity: 0;
-  }
-}
 
 // tag page
 .pageType-directory.isntHomePage {
@@ -556,7 +314,7 @@ a {
     span {
       display: block;
       font-weight: 400;
-      font-family: var(--serif-font);
+      font-family: var(--font-serif);
       font-size: 1.2rem;
       font-style: italic;
       text-transform: uppercase;
@@ -628,3 +386,9 @@ a {
 .sitename-content {
     margin: 4rem 2rem;
 }
+
+
+@import "1_atoms/_all";
+@import "2_molecules/_all";
+@import "3_modules/_all";
+@import "4_layouts/_all";

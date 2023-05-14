@@ -1,0 +1,23 @@
+
+//  A module is a collection of more than three atoms,
+//  intended to be re-used across the site.
+//
+//  Emphasis is on the re-use aspect. So a page for a
+//  specific blogpost might contain an arrangement of
+//  atoms, but that arrangement is expressly for the
+//  blog post page; you wouldn't re-use that "page-title
+//  and metadata and content" collection anywhere else.
+//  That's a template. That arrangement appears only once
+//  per page, and just in that section.
+//
+//  Whereas the blog-post-entry collection is used multiple
+//  times on the homepage and archive pages, so that would
+//  be a module.
+
+@import "_blogpost-module";
+@import "_navigation";
+@import "_previousnext";
+@import "_page-intro";
+
+//  These modules are specific to the site template
+@import "_tmp-sitename";

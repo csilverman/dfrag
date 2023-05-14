@@ -1,0 +1,13 @@
+//  A layout is a structure that holds other modules,
+//  and only modules. It does not contain atoms, since only
+//  modules contain atoms.
+//
+//  A layout is not a template. A template is a page-level
+//  thing: a layout could be thought of as a module expressly
+//  for containing modules. It is simply a re-usable structure or
+//  scaffolding.
+//
+//  Examples: a grid system, a masonry layout. These are pretty
+//  specific, so there probably won't be too many of these in a site.
+
+@import "_masonry";
